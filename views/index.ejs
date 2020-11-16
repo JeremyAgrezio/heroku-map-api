@@ -29,8 +29,8 @@
       </fieldset>
     </div>
     <script>
-      mapboxgl.accessToken = '<%= process.env.API_KEY_MAP %>'  || 'NC';
-      const map = new mapboxgl.Map({
+      mapboxgl.accessToken = '<%= process.env.API_KEY_MAP %>'  || process.env.API_KEY_MAP || 'NC';
+      var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
         center: ['<%= long %>', '<%= lat %>'], // starting position [lng, lat]
