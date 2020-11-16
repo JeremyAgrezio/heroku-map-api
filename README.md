@@ -1,1 +1,1 @@
-heroku-news-api
+heroku-map-api
