@@ -1,4 +1,4 @@
-# Heroku am api
+# Heroku map api
 To run code
 ```
 npm run start
