@@ -29,7 +29,7 @@
       </fieldset>
     </div>
     <script>
-      mapboxgl.accessToken = '<%= process.env.API_KEY_MAP %>'  || process.env.API_KEY_MAP || 'NC';
+      mapboxgl.accessToken = '<%= process.env.API_KEY_MAP %>' || 'NC';
       var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
