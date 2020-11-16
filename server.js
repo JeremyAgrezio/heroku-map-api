@@ -2,15 +2,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const app = express()
+const dotenv = require('dotenv');
+dotenv.config();
 
 const apiKey = process.env.API_KEY || 'NC';
+const apiKeyMap = process.env.API_KEY_MAP || 'NC';
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 
 app.get('/', function (req, res) {
-  res.render('index', {weather: null, long: null, lat: null, error: null});
+  res.render('index', {weather: null, apiKeyMap: apiKeyMap, long: null, lat: null, error: null});
 })
 
 app.post('/', function (req, res) {
@@ -30,14 +33,14 @@ app.post('/', function (req, res) {
       if(weather.main === undefined){
         res.render('index', {weather: null, long: null, lat: null, error: 'Error, please try again'});
       } else {
-        let weatherText = `It's ${weather.main.temp} degrees in ${weather.name}!`;
+        let informationsData = `It's ${weather.main.temp} degrees in ${weather.name}!`;
 
         request(url, function (err, response, body) {
           console.log("Status "+response.statusCode);
           let map = JSON.parse(body)
           let mapLong = JSON.stringify(map.coord.lon)
           let mapLat = JSON.stringify(map.coord.lat)
-          res.render('index', {weather: weatherText, long: mapLong, lat: mapLat, error: null});
+          res.render('index', {weather: informationsData, long: mapLong, lat: mapLat, error: null});
         });
       }
     }
