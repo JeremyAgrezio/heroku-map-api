@@ -22,15 +22,15 @@
     <% if(error !== null){ %>
       <p><%= error %></p>
     <% } %>
+    <div id='map' style='width: 535px; height: 300px;'></div>
   </fieldset>
 </div>
-<div id='map' style='width: 400px; height: 300px;'></div>
 <script>
-  // mapboxgl.accessToken = process.env.API_KEY || 'NC';
+  mapboxgl.accessToken = process.env.API_KEY_MAP || 'NC';
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-    center: [-0.57944, 44.83778], // starting position [lng, lat]
+    center: [<%= long %>, <%= lat %>], // starting position [lng, lat]
     zoom: 9 // starting zoom
   });
 </script>
