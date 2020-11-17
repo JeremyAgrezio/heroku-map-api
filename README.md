@@ -1,5 +1,5 @@
 # Heroku map api
-Set api keys environment variables and run code with :
+Set api keys in environment variables and run code with :
 ```
 npm run start
 ```
