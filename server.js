@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const app = express()
+const dotenv = require('dotenv');
+dotenv.config();
 
 const apiKey = process.env.API_KEY || 'NC';
 
