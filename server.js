@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express()
 const dotenv = require('dotenv');
+const mailjet = require ('node-mailjet')
+    .connect('151c57fa7b966969d58cc0c596e5b71f', '53e0ba68365a8e76df9dac7786bf5215')
 dotenv.config();
 
 const apiKey = process.env.API_KEY || 'NC';
@@ -40,12 +42,46 @@ app.post('/', function (req, res) {
           let mapLong = JSON.stringify(map.coord.lon)
           let mapLat = JSON.stringify(map.coord.lat)
           console.log(JSON.stringify(weather))
+          sendMail(weather);
           res.render('index', {weather: weatherText, icon: weather.weather[0].icon, iconInfo: weather.weather[0].description , long: mapLong, lat: mapLat, error: null});
         });
       }
     }
   })
 })
+
+function sendMail(weather, weatherText){
+  const req = mailjet
+      .post("send", {'version': 'v3.1'})
+      .request({
+        "Messages":[
+          {
+            "From": {
+              "Email": "maxime.ollivier-drolshagen@next-u.fr",
+              "Name": "Maxime"
+            },
+            "To": [
+              {
+                "Email": "maxime.ollivier-drolshagen@next-u.fr",
+                "Name": "Maxime"
+              }
+            ],
+            "Subject": "Your weather infos",
+            "TextPart": "Your weather infos",
+            "HTMLPart": "<p>"+weather.main.temp+"</p>" +
+                "<p>"+ weather.weather[0].description +"</p>",
+            "CustomID": "AppGettingStartedTest"
+          }
+        ]
+      })
+  req
+      .then((result) => {
+        console.log(result.body)
+      })
+      .catch((err) => {
+        console.log(err.statusCode)
+      })
+}
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
