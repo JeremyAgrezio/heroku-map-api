@@ -24,6 +24,8 @@
         <% } %>
 
         <% if(long !== null && lat !== null){ %>
+          <img src="http://openweathermap.org/img/wn/<%= icon %>@2x.png"/>
+          <p><%= iconInfo %></p>
           <div id='map' style='width: 535px; height: 300px;'></div>
         <% } else { %>
           <div id='map' style='width: 0px; height: 0px;'></div>
