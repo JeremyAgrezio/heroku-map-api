@@ -16,7 +16,11 @@
           <input type="submit" class="ghost-button" value="Show data">
         </form>
         <% if(weather !== null){ %>
-          <p><%= weather %></p>
+          <p>
+            <span><%= weather %> (</span>
+            <img src="http://openweathermap.org/img/wn/<%= icon %>.png">
+            <span><%= iconInfo %> )</span>
+          </p>
         <% } %>
 
         <% if(error !== null){ %>
@@ -24,8 +28,6 @@
         <% } %>
 
         <% if(long !== null && lat !== null){ %>
-          <img src="http://openweathermap.org/img/wn/<%= icon %>@2x.png"/>
-          <p><%= iconInfo %></p>
           <div id='map' style='width: 535px; height: 300px;'></div>
         <% } else { %>
           <div id='map' style='width: 0px; height: 0px;'></div>

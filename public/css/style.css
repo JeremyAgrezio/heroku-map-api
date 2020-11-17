@@ -7,9 +7,10 @@ body {
   width: 800px;
   margin: 0 auto;
   font-family: 'Open Sans', sans-serif;
+  text-align: center;
 }
 .container {
-  width: 600px;
+  width: 700px;
   margin: 0 auto;
 }
 fieldset {
@@ -71,4 +72,14 @@ fieldset {
 }
 p {
   color: #E64A19;
+}
+img {
+  vertical-align:middle;
+}
+#map{
+  margin: 0 auto;
+}
+form{
+  width: 450px;
+  margin: 0 auto;
 }
