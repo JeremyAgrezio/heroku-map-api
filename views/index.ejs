@@ -12,9 +12,9 @@
     <div class="container">
       <fieldset>
         <form action="/" method="post">
+          <input name="email" type="text" class="ghost-input" placeholder="Enter a Email" required>
           <input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>
           <input type="submit" class="ghost-button" value="Show data">
-          <input type="button" id="button" value="Send mail">
         </form>
         <% if(weather !== null){ %>
           <p>
